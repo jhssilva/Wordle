@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/close_button.png" type="Texture" id=1]
+[ext_resource path="res://Modes.gd" type="Script" id=2]
+
+[node name="Modes" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.768627, 0.713726, 0.713726, 1 )
+
+[node name="Options" type="VBoxContainer" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.5
+margin_top = -58.0
+margin_right = 80.5
+margin_bottom = 58.0
+
+[node name="EasyMode" type="Button" parent="Control/Options"]
+margin_right = 161.0
+margin_bottom = 20.0
+text = "Easy Mode"
+
+[node name="NormalMode" type="Button" parent="Control/Options"]
+margin_top = 24.0
+margin_right = 161.0
+margin_bottom = 44.0
+text = "Normal Mode"
+
+[node name="HardMode" type="Button" parent="Control/Options"]
+margin_top = 48.0
+margin_right = 161.0
+margin_bottom = 68.0
+text = "Hard Mode"
+
+[node name="AgainstTheClockMode" type="Button" parent="Control/Options"]
+margin_top = 72.0
+margin_right = 161.0
+margin_bottom = 92.0
+text = "Against the clock Mode"
+
+[node name="TimedMode" type="Button" parent="Control/Options"]
+margin_top = 96.0
+margin_right = 161.0
+margin_bottom = 116.0
+text = "Timed Mode"
+
+[node name="CloseButton" type="TextureButton" parent="Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 1 )
+
+[connection signal="close" from="." to="." method="_on_Modes_close"]
+[connection signal="pressed" from="Control/Options/NormalMode" to="." method="_on_NormalMode_pressed"]
+[connection signal="pressed" from="Control/CloseButton" to="." method="_on_CloseButton_pressed"]
