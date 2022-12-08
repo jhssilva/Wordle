@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://InitialScreen.gd" type="Script" id=1]
+
+[node name="InitialScreen" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.223529, 0.192157, 0.113725, 1 )
+
+[node name="Menu" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.5
+margin_top = -22.0
+margin_right = 20.5
+margin_bottom = 22.0
+
+[node name="Start" type="Button" parent="Menu"]
+margin_right = 47.0
+margin_bottom = 20.0
+text = "Start"
+
+[node name="Score" type="Button" parent="Menu"]
+margin_top = 24.0
+margin_right = 47.0
+margin_bottom = 44.0
+text = "Score"
+
+[node name="Help" type="Button" parent="Menu"]
+margin_top = 48.0
+margin_right = 47.0
+margin_bottom = 68.0
+text = "Help"
+
+[node name="Exit" type="Button" parent="Menu"]
+margin_top = 72.0
+margin_right = 47.0
+margin_bottom = 92.0
+text = "Exit"
+
+[node name="Top Container" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_top = 30.0
+margin_right = -50.0
+margin_bottom = 60.0
+
+[node name="Language Selection" type="OptionButton" parent="Top Container"]
+margin_right = 29.0
+margin_bottom = 30.0
+
+[connection signal="pressed" from="Menu/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="item_selected" from="Top Container/Language Selection" to="." method="_on_Language_Selection_item_selected"]

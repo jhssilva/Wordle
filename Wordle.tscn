@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://InitialScreen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Wordle.gd" type="Script" id=2]
+
+[node name="Wordle" type="Node"]
+script = ExtResource( 2 )
+
+[node name="InitialScreen" parent="." instance=ExtResource( 1 )]
+
+[connection signal="language_changed" from="InitialScreen" to="." method="_on_InitialScreen_language_changed"]
