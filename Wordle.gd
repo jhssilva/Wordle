@@ -40,5 +40,6 @@ func _on_Modes_close():
 
 func _on_Modes_normal_mode():
 	modes_control_scene.hide()
-	#Show game and send normal
+	game_scene.set_current_game_mode("normal")
 	game_scene.show()
+	game_scene.start()
