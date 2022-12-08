@@ -3,15 +3,21 @@ extends Control
 var language_dropdown
 var languages_list
 var current_language
+var help_scene
 
 signal language_changed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_initial_variables()
+	hide_scenes()
 
 func set_initial_variables():
 	language_dropdown = $"Top Container/Language Selection"
+	help_scene = $"Help"
+
+func hide_scenes():
+	help_scene.hide()
 
 func set_language_selection_dropdown(languages = ["pt"]):
 	languages_list = languages
@@ -33,15 +39,20 @@ func _on_Language_Selection_item_selected(index):
 
 func set_labels_on_language_update():
 	#Only for two languages ("pt" and "en")
-	if current_language == "en":
-		$Menu/Start.text = "Start"
-		$Menu/Score.text = "Score"
-		$Menu/Help.text = "Help"
-		$Menu/Exit.text = "Exit"
-	else: 
+	if current_language == "pt":
 		$Menu/Start.text	= "Começar"
 		$Menu/Score.text = "Pontuação"
 		$Menu/Help.text = "Ajuda"
 		$Menu/Exit.text = "Sair"
-		
+	else: 
+		$Menu/Start.text = "Start"
+		$Menu/Score.text = "Score"
+		$Menu/Help.text = "Help"
+		$Menu/Exit.text = "Exit"
+
+func _on_Help_pressed():
+	help_scene.set_image(current_language)
+	help_scene.show()
 	
+func _on_Help_closed():
+	help_scene.hide()

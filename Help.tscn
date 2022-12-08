@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Help.gd" type="Script" id=1]
+[ext_resource path="res://assets/how_to_play_en.png" type="Texture" id=2]
+[ext_resource path="res://assets/close_button.png" type="Texture" id=3]
+
+[node name="Help" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.494118, 0.454902, 0.454902, 1 )
+
+[node name="Info" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.24333
+margin_bottom = -146.0
+texture = ExtResource( 2 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchor_left = 0.960938
+anchor_right = 1.0
+anchor_bottom = 0.0666667
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
