@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 [node name="Modes" parent="." instance=ExtResource( 3 )]
 
 [node name="Game" parent="." instance=ExtResource( 4 )]
+visible = false
 
 [connection signal="language_changed" from="InitialScreen" to="." method="_on_InitialScreen_language_changed"]
 [connection signal="start_pressed" from="InitialScreen" to="." method="_on_InitialScreen_start_pressed"]
