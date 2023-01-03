@@ -7,10 +7,12 @@ var current_language = "en"
 var file_path_en = "res://assets/en_US.txt"
 var file_path_pt = "res://assets/pt_PT.txt"
 var file
+var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_word()
+	rng.randomize()
+	set_new_word()
 	pass # Replace with function body.
 
 func set_current_game_mode(mode):
@@ -27,13 +29,16 @@ func start():
 
 func set_new_word():
 	current_word = get_word()
+	print(current_word)
 
 func get_word():
-	# Read from file, depending on the language.
 	var array_data = load_data_current_language()
-	print(array_data)
-	return
+	var random_number = get_random_number(0, array_data.size()-1)
+	return array_data[random_number]
 	
+func get_random_number(begin, end):
+	return rng.randi_range(begin, end)
+
 func load_data_current_language():
 	file = File.new()
 	file.open(get_current_file_path(), file.READ)
