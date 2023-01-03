@@ -41,6 +41,7 @@ func _on_Modes_close():
 func _on_Modes_normal_mode():
 	modes_control_scene.hide()
 	game_scene.set_current_game_mode("normal")
+	game_start()
 
 func game_start():
 	game_scene.set_current_language(current_language)

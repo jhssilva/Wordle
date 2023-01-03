@@ -24,7 +24,6 @@ signal lost_game
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
-	set_new_word() # Deactivate in the end
 
 func set_current_game_mode(mode):
 	current_game_mode = mode
@@ -44,7 +43,7 @@ func clear_game_variables():
 func clear_all_letters():
 	for i in range(row_path.size()):
 		for x in range(word_size):
-			get_path_letter_pos_row(i, x).clear()
+			get_path_letter_pos_row(i, x+1).clear()
 
 func set_new_word():
 	current_word = get_word()
