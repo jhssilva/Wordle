@@ -15,7 +15,12 @@ script = ExtResource( 2 )
 [node name="Game" parent="." instance=ExtResource( 4 )]
 visible = false
 
+[node name="Timer_end_game" type="Timer" parent="."]
+
 [connection signal="language_changed" from="InitialScreen" to="." method="_on_InitialScreen_language_changed"]
 [connection signal="start_pressed" from="InitialScreen" to="." method="_on_InitialScreen_start_pressed"]
 [connection signal="close" from="Modes" to="." method="_on_Modes_close"]
 [connection signal="normal_mode" from="Modes" to="." method="_on_Modes_normal_mode"]
+[connection signal="lost_game" from="Game" to="." method="_on_Game_lost_game"]
+[connection signal="won_game" from="Game" to="." method="_on_Game_won_game"]
+[connection signal="timeout" from="Timer_end_game" to="." method="_on_Timer_end_game_timeout"]
