@@ -29,7 +29,7 @@ margin_bottom = 270.0
 
 [node name="Options" type="VBoxContainer" parent="Container"]
 margin_right = 266.0
-margin_bottom = 266.0
+margin_bottom = 320.0
 
 [node name="FirstRow" type="HBoxContainer" parent="Container/Options"]
 margin_right = 266.0
@@ -145,7 +145,30 @@ margin_right = 212.0
 margin_left = 216.0
 margin_right = 266.0
 
-[node name="KEYBOARD" type="HBoxContainer" parent="Container"]
+[node name="SixthRow" type="HBoxContainer" parent="Container/Options"]
 margin_top = 270.0
 margin_right = 266.0
-margin_bottom = 270.0
+margin_bottom = 320.0
+
+[node name="Letter1" parent="Container/Options/SixthRow" instance=ExtResource( 2 )]
+
+[node name="Letter2" parent="Container/Options/SixthRow" instance=ExtResource( 2 )]
+margin_left = 54.0
+margin_right = 104.0
+
+[node name="Letter3" parent="Container/Options/SixthRow" instance=ExtResource( 2 )]
+margin_left = 108.0
+margin_right = 158.0
+
+[node name="Letter4" parent="Container/Options/SixthRow" instance=ExtResource( 2 )]
+margin_left = 162.0
+margin_right = 212.0
+
+[node name="Letter5" parent="Container/Options/SixthRow" instance=ExtResource( 2 )]
+margin_left = 216.0
+margin_right = 266.0
+
+[node name="KEYBOARD" type="HBoxContainer" parent="Container"]
+margin_top = 324.0
+margin_right = 266.0
+margin_bottom = 324.0

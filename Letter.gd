@@ -10,13 +10,18 @@ var array_status = [bg_default, bg_gray, bg_green, bg_yellow]
 onready var letter = $"."
 
 func _ready():
-	change_status(0)
+	clear()
 
-func change_status(status):
-	theme = array_status[status]
+func change_status(status_pos):
+	theme = array_status[status_pos]
 	
 func clear_label():
 	change_label("")
 	
 func change_label(label):
 	letter.text = label
+
+func clear():
+	clear_label()
+	change_status(0)
+		

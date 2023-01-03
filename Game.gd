@@ -3,6 +3,7 @@ extends Control
 var game_mode = ["easy", "normal", "hard", "clock", "timed"]
 var current_game_mode
 var current_word
+var word_size = 5
 var current_language = "en"
 var current_row_option = 1
 var file_path_en = "res://assets/en_US.txt"
@@ -14,13 +15,16 @@ onready var row_path = [$Container/Options/FirstRow,
  $Container/Options/SecondRow,
 $Container/Options/ThirdRow,
 $Container/Options/ForthRow,
-$Container/Options/FifthRow]
+$Container/Options/FifthRow,
+$Container/Options/SixthRow]
+
+signal won_game
+signal lost_game
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
-	set_new_word()
-	pass # Replace with function body.
+	set_new_word() # Deactivate in the end
 
 func set_current_game_mode(mode):
 	current_game_mode = mode
@@ -34,9 +38,17 @@ func start():
 
 func clear_game_variables():
 	current_row_option = 1
+	word_input = ""
+	clear_all_letters()
+
+func clear_all_letters():
+	for i in range(row_path.size()):
+		for x in range(word_size):
+			get_path_letter_pos_row(i, x).clear()
 
 func set_new_word():
 	current_word = get_word()
+	print(current_word)
 
 func get_word():
 	var array_data = load_data_current_language()
@@ -65,7 +77,8 @@ func get_current_file_path():
 # Called when a key is clicked
 func _input(event):
 	if event.is_action_pressed("enter"):
-		game_iteraction()
+		if(word_input.length() >= current_word.length()):
+			game_iteraction()
 	elif event.is_action_pressed("backspace"):
 		handle_backspace_pressed()
 	elif (
@@ -80,14 +93,68 @@ func _input(event):
 		update_ui_letter(letter)
 
 func game_iteraction():
+	update_information_on_row()
+	if (check_win()):
+		handle_win()
+		return
+	set_new_turn()
+
+func update_information_on_row():
+	for i in range(current_word.length()):
+		if (current_word.to_lower()[i] == word_input.to_lower()[i]):
+			update_letter_green(i+1)
+		else:
+			var aux_character = word_input.to_lower()[i]
+			var found = false
+			for x in range(current_word.length()):
+				if (i != x && aux_character == current_word[x]):
+					update_letter_yellow(i+1)
+					found = true
+					break
+			if(!found):
+				update_letter_gray(i+1)
+
+func update_letter_green(position):
+	var letter_path = get_path_letter_pos(position)
+	letter_path.change_status(2)
+	
+func update_letter_yellow	(position):
+	var letter_path = get_path_letter_pos(position)
+	letter_path.change_status(3)
+
+func update_letter_gray(position):
+	var letter_path = get_path_letter_pos(position)
+	letter_path.change_status(1)
+
+func get_path_letter_pos(position):
+	var position_row_on_array = current_row_option - 1
+	var letter_to_update_path = row_path[position_row_on_array].get_node("Letter" + String(position))
+	return letter_to_update_path
+
+func get_path_letter_pos_row(row, position):
+	var letter_to_update_path = row_path[row].get_node("Letter" + String(position))
+	return letter_to_update_path
+
+func set_new_turn():
+	if(current_row_option >= row_path.size()):
+		handle_end_game()
+		return
+	
 	current_row_option += 1
 	word_input = ""
+	
+func check_win():
+	return current_word.to_lower() == word_input.to_lower()
+	 
+func handle_win():
+	emit_signal("won_game")
+	
+func handle_end_game():
+	emit_signal("lost_game")
 
 func update_ui_letter(letter):
-	var position_row_on_array = current_row_option - 1
 	var position_letter = word_input.length()
-	var letter_to_update_path = row_path[position_row_on_array].get_node("Letter" + String(position_letter))
-	letter_to_update_path.change_label(letter)
+	get_path_letter_pos(position_letter).change_label(letter)
 
 func handle_backspace_pressed():
 	if(word_input.length() == 0):
