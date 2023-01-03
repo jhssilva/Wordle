@@ -17,7 +17,7 @@ margin_left = -512.0
 margin_top = -300.0
 margin_right = 512.0
 margin_bottom = 300.0
-color = Color( 1, 0.866667, 0.576471, 1 )
+color = Color( 0.180392, 0.329412, 0.380392, 0.486275 )
 
 [node name="Container" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -35,7 +35,7 @@ margin_bottom = 266.0
 margin_right = 266.0
 margin_bottom = 50.0
 
-[node name="Letter" parent="Container/Options/FirstRow" instance=ExtResource( 2 )]
+[node name="Letter1" parent="Container/Options/FirstRow" instance=ExtResource( 2 )]
 
 [node name="Letter2" parent="Container/Options/FirstRow" instance=ExtResource( 2 )]
 margin_left = 54.0
@@ -58,7 +58,7 @@ margin_top = 54.0
 margin_right = 266.0
 margin_bottom = 104.0
 
-[node name="Letter" parent="Container/Options/SecondRow" instance=ExtResource( 2 )]
+[node name="Letter1" parent="Container/Options/SecondRow" instance=ExtResource( 2 )]
 
 [node name="Letter2" parent="Container/Options/SecondRow" instance=ExtResource( 2 )]
 margin_left = 54.0
@@ -81,7 +81,7 @@ margin_top = 108.0
 margin_right = 266.0
 margin_bottom = 158.0
 
-[node name="Letter" parent="Container/Options/ThirdRow" instance=ExtResource( 2 )]
+[node name="Letter1" parent="Container/Options/ThirdRow" instance=ExtResource( 2 )]
 
 [node name="Letter2" parent="Container/Options/ThirdRow" instance=ExtResource( 2 )]
 margin_left = 54.0
@@ -104,7 +104,7 @@ margin_top = 162.0
 margin_right = 266.0
 margin_bottom = 212.0
 
-[node name="Letter" parent="Container/Options/ForthRow" instance=ExtResource( 2 )]
+[node name="Letter1" parent="Container/Options/ForthRow" instance=ExtResource( 2 )]
 
 [node name="Letter2" parent="Container/Options/ForthRow" instance=ExtResource( 2 )]
 margin_left = 54.0
@@ -127,7 +127,7 @@ margin_top = 216.0
 margin_right = 266.0
 margin_bottom = 266.0
 
-[node name="Letter" parent="Container/Options/FifthRow" instance=ExtResource( 2 )]
+[node name="Letter1" parent="Container/Options/FifthRow" instance=ExtResource( 2 )]
 
 [node name="Letter2" parent="Container/Options/FifthRow" instance=ExtResource( 2 )]
 margin_left = 54.0

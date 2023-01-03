@@ -11,4 +11,5 @@ rect_pivot_offset = Vector2( 25, 25 )
 theme = ExtResource( 1 )
 align = 1
 valign = 1
+uppercase = true
 script = ExtResource( 2 )

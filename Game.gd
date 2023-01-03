@@ -4,10 +4,17 @@ var game_mode = ["easy", "normal", "hard", "clock", "timed"]
 var current_game_mode
 var current_word
 var current_language = "en"
+var current_row_option = 1
 var file_path_en = "res://assets/en_US.txt"
 var file_path_pt = "res://assets/pt_PT.txt"
 var file
 var rng = RandomNumberGenerator.new()
+var word_input: String = ""
+onready var row_path = [$Container/Options/FirstRow,
+ $Container/Options/SecondRow,
+$Container/Options/ThirdRow,
+$Container/Options/ForthRow,
+$Container/Options/FifthRow]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,14 +29,14 @@ func set_current_language(language):
 	current_language = language
 
 func start():
-	# Get a word fron the file that will be the word
-	# that will be guessed
+	clear_game_variables()
 	set_new_word()
-	pass
+
+func clear_game_variables():
+	current_row_option = 1
 
 func set_new_word():
 	current_word = get_word()
-	print(current_word)
 
 func get_word():
 	var array_data = load_data_current_language()
@@ -56,6 +63,28 @@ func get_current_file_path():
 	return file_path_en
 
 # Called when a key is clicked
-func _input(ev):
-	if ev is InputEventKey and ev.scancode == KEY_K and not ev.echo:
-		print("teste")
+func _input(event):
+	if event.is_action_pressed("enter"):
+		game_iteraction()
+	elif event.is_action_pressed("backspace"):
+		print("backspace pressed")
+	elif (
+		event is InputEventKey and
+		event.is_echo() == false and
+		event.is_pressed() and
+		event.as_text().length() == 1 and
+		word_input.length() < current_word.length()
+	):
+		var letter = event.as_text()
+		word_input += letter
+		update_ui_letter(letter)
+
+func game_iteraction():
+	current_row_option += 1
+	word_input = ""
+
+func update_ui_letter(letter):
+	var position_row_on_array = current_row_option - 1
+	var position_letter = word_input.length()
+	var letter_to_update_path = row_path[position_row_on_array].get_node("Letter" + String(position_letter))
+	letter_to_update_path.change_label(letter)
