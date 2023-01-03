@@ -67,7 +67,7 @@ func _input(event):
 	if event.is_action_pressed("enter"):
 		game_iteraction()
 	elif event.is_action_pressed("backspace"):
-		print("backspace pressed")
+		handle_backspace_pressed()
 	elif (
 		event is InputEventKey and
 		event.is_echo() == false and
@@ -88,3 +88,17 @@ func update_ui_letter(letter):
 	var position_letter = word_input.length()
 	var letter_to_update_path = row_path[position_row_on_array].get_node("Letter" + String(position_letter))
 	letter_to_update_path.change_label(letter)
+
+func handle_backspace_pressed():
+	if(word_input.length() == 0):
+		return
+	delete_letter()
+
+func delete_letter():
+	update_ui_letter("")
+	var prev_size = word_input.length()
+	if(prev_size == 1):
+		word_input = ""
+	else:
+		word_input = word_input.substr(0, prev_size-1)
+	
