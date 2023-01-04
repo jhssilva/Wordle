@@ -9,7 +9,9 @@ var current_language = "en"
 var current_row_option = 1
 var file_path_en = "res://assets/en_US.txt"
 var file_path_pt = "res://assets/pt_PT.txt"
+onready var info_label = $Container/Info
 var file
+var dictionnaire_keys_clicked = {}
 var rng = RandomNumberGenerator.new()
 var word_input: String = ""
 onready var row_path = [$Container/Options/FirstRow,
@@ -45,6 +47,7 @@ func clear_game_variables():
 	current_row_option = 1
 	word_input = ""
 	game_on = false
+	dictionnaire_keys_clicked = {}
 	clear_all_letters()
 
 func clear_all_letters():
@@ -97,6 +100,11 @@ func _input(event):
 		word_input.length() < current_word.length()
 	):
 		var letter = event.as_text()
+		print(dictionnaire_keys_clicked)
+		if (is_key_disabled(letter)):
+			info_label.text = "The key '" + letter + "' is disabled!"
+			return
+		
 		word_input += letter
 		update_ui_letter(letter)
 
@@ -121,6 +129,7 @@ func update_information_on_row():
 					break
 			if(!found):
 				update_letter_gray(i+1)
+				add_letter_to_dictionaire(aux_character)
 
 func update_letter_green(position):
 	var letter_path = get_path_letter_pos(position)
@@ -133,6 +142,12 @@ func update_letter_yellow	(position):
 func update_letter_gray(position):
 	var letter_path = get_path_letter_pos(position)
 	letter_path.change_status(1)
+
+func add_letter_to_dictionaire(letter):
+	dictionnaire_keys_clicked[letter.to_lower()] = true
+	
+func is_key_disabled(key):
+	return dictionnaire_keys_clicked.has(key.to_lower())
 
 func get_path_letter_pos(position):
 	var position_row_on_array = current_row_option - 1
