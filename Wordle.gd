@@ -80,4 +80,3 @@ func _on_InitialScreen_score_pressed():
 func _on_Score_timeout():
 	score_scene.hide()
 	initial_screen_scene.show()
-	print("hereee")
