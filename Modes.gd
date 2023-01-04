@@ -2,6 +2,10 @@ extends Node
 
 signal close
 signal normal_mode
+signal easy_mode
+signal hard_mode
+signal against_clock_mode
+signal timed_mode
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,3 +30,15 @@ func _on_CloseButton_pressed():
 
 func _on_NormalMode_pressed():
 	emit_signal("normal_mode")
+
+func _on_EasyMode_pressed():
+	emit_signal("easy_mode")
+
+func _on_HardMode_pressed():
+	emit_signal("hard_mode")
+
+func _on_AgainstTheClockMode_pressed():
+	emit_signal("against_clock_mode")
+
+func _on_TimedMode_pressed():
+	emit_signal("timed_mode")

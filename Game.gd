@@ -41,11 +41,13 @@ func set_current_language(language):
 func start():
 	clear_game_variables()
 	set_new_word()
+	handle_game_modes()
 	game_on = true
 
 func clear_game_variables():
 	current_row_option = 1
 	word_input = ""
+	update_info_message("")
 	game_on = false
 	dictionnaire_keys_clicked = {}
 	clear_all_letters()
@@ -82,6 +84,18 @@ func get_current_file_path():
 	if current_language == "pt":
 		return file_path_pt
 	return file_path_en
+
+func handle_game_modes():
+	if (current_game_mode == game_mode[0]):
+		var text = ""
+		if (current_language == "en"):
+			text = "The word starts with the letter: " + current_word[0]
+		else:
+			text = "A palavra comeca com a letra: " + current_word[0]
+		update_info_message(text)
+		
+func update_info_message(message):
+	info_label.text = message
 
 # Called when a key is clicked
 func _input(event):
@@ -177,7 +191,7 @@ func check_win():
 	return current_word.to_lower() == word_input.to_lower()
 	 
 func handle_win():
-	game_mode = false
+	game_on = false
 	win_display_scene.show()
 	$WinTimer.start()
 	

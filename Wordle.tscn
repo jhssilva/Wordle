@@ -23,6 +23,7 @@ visible = false
 [connection signal="score_pressed" from="InitialScreen" to="." method="_on_InitialScreen_score_pressed"]
 [connection signal="start_pressed" from="InitialScreen" to="." method="_on_InitialScreen_start_pressed"]
 [connection signal="close" from="Modes" to="." method="_on_Modes_close"]
+[connection signal="easy_mode" from="Modes" to="." method="_on_Modes_easy_mode"]
 [connection signal="normal_mode" from="Modes" to="." method="_on_Modes_normal_mode"]
 [connection signal="lost_game" from="Game" to="." method="_on_Game_lost_game"]
 [connection signal="won_game" from="Game" to="." method="_on_Game_won_game"]

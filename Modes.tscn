@@ -62,5 +62,9 @@ margin_bottom = 40.0
 texture_normal = ExtResource( 1 )
 
 [connection signal="close" from="." to="." method="_on_Modes_close"]
+[connection signal="pressed" from="Control/Options/EasyMode" to="." method="_on_EasyMode_pressed"]
 [connection signal="pressed" from="Control/Options/NormalMode" to="." method="_on_NormalMode_pressed"]
+[connection signal="pressed" from="Control/Options/HardMode" to="." method="_on_HardMode_pressed"]
+[connection signal="pressed" from="Control/Options/AgainstTheClockMode" to="." method="_on_AgainstTheClockMode_pressed"]
+[connection signal="pressed" from="Control/Options/TimedMode" to="." method="_on_TimedMode_pressed"]
 [connection signal="pressed" from="Control/CloseButton" to="." method="_on_CloseButton_pressed"]

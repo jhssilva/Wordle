@@ -45,9 +45,7 @@ func _on_Modes_close():
 	initial_screen_scene.show()
 
 func _on_Modes_normal_mode():
-	modes_control_scene.hide()
-	game_scene.set_current_game_mode("normal")
-	game_start()
+	handle_mode_selected("normal")
 
 func game_start():
 	hide_all_scenes()
@@ -80,3 +78,11 @@ func _on_InitialScreen_score_pressed():
 func _on_Score_timeout():
 	score_scene.hide()
 	initial_screen_scene.show()
+
+func _on_Modes_easy_mode():
+	handle_mode_selected("easy")
+
+func handle_mode_selected(mode_name):
+	modes_control_scene.hide()
+	game_scene.set_current_game_mode(mode_name)
+	game_start()
