@@ -7,6 +7,7 @@ var help_scene
 
 signal language_changed
 signal start_pressed
+signal score_pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -60,3 +61,6 @@ func _on_Help_closed():
 
 func _on_Start_pressed():
 	emit_signal("start_pressed")
+
+func _on_Score_pressed():
+	emit_signal("score_pressed")

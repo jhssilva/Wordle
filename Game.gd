@@ -3,6 +3,7 @@ extends Control
 var game_mode = ["easy", "normal", "hard", "clock", "timed"]
 var current_game_mode
 var current_word
+var game_on = false
 var word_size = 5
 var current_language = "en"
 var current_row_option = 1
@@ -17,6 +18,8 @@ $Container/Options/ThirdRow,
 $Container/Options/ForthRow,
 $Container/Options/FifthRow,
 $Container/Options/SixthRow]
+onready var win_display_scene = $WinDisplay
+onready var defeat_display_scene = $DefeatDisplay
 
 signal won_game
 signal lost_game
@@ -24,6 +27,8 @@ signal lost_game
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
+	win_display_scene.hide()
+	defeat_display_scene.hide()
 
 func set_current_game_mode(mode):
 	current_game_mode = mode
@@ -34,10 +39,12 @@ func set_current_language(language):
 func start():
 	clear_game_variables()
 	set_new_word()
+	game_on = true
 
 func clear_game_variables():
 	current_row_option = 1
 	word_input = ""
+	game_on = false
 	clear_all_letters()
 
 func clear_all_letters():
@@ -75,6 +82,8 @@ func get_current_file_path():
 
 # Called when a key is clicked
 func _input(event):
+	if(!game_on):
+		return
 	if event.is_action_pressed("enter"):
 		if(word_input.length() >= current_word.length()):
 			game_iteraction()
@@ -146,10 +155,14 @@ func check_win():
 	return current_word.to_lower() == word_input.to_lower()
 	 
 func handle_win():
-	emit_signal("won_game")
+	game_mode = false
+	win_display_scene.show()
+	$WinTimer.start()
 	
 func handle_end_game():
-	emit_signal("lost_game")
+	game_on = false
+	defeat_display_scene.show()
+	$DefeatTimer.start()
 
 func update_ui_letter(letter):
 	var position_letter = word_input.length()
@@ -168,3 +181,10 @@ func delete_letter():
 	else:
 		word_input = word_input.substr(0, prev_size-1)
 	
+func _on_DefeatTimer_timeout():
+	defeat_display_scene.hide()
+	emit_signal("lost_game")
+	
+func _on_WinTimer_timeout():
+	win_display_scene.hide()
+	emit_signal("won_game")

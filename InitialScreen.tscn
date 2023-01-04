@@ -70,6 +70,7 @@ margin_bottom = 30.0
 [node name="Help" parent="." instance=ExtResource( 2 )]
 
 [connection signal="pressed" from="Menu/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Menu/Score" to="." method="_on_Score_pressed"]
 [connection signal="pressed" from="Menu/Help" to="." method="_on_Help_pressed"]
 [connection signal="pressed" from="Menu/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="item_selected" from="Top Container/Language Selection" to="." method="_on_Language_Selection_item_selected"]
