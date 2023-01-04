@@ -100,13 +100,20 @@ func _input(event):
 		word_input.length() < current_word.length()
 	):
 		var letter = event.as_text()
-		print(dictionnaire_keys_clicked)
 		if (is_key_disabled(letter)):
-			info_label.text = "The key '" + letter + "' is disabled!"
+			update_info_on_key_disabled(letter)
 			return
 		
 		word_input += letter
 		update_ui_letter(letter)
+
+func update_info_on_key_disabled(letter):
+	var text = ""
+	if (current_language == "en"):
+		text = "The key '" + letter + "' is disabled!"
+	else:
+		text = "A tecla '" + letter + "' esta desactivada!"
+	info_label.text = text
 
 func game_iteraction():
 	update_information_on_row()
