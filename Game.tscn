@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://Letter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Countdown.tscn" type="PackedScene" id=3]
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -175,10 +176,19 @@ margin_right = 212.0
 margin_left = 216.0
 margin_right = 266.0
 
-[node name="KEYBOARD" type="HBoxContainer" parent="Container"]
-margin_top = 342.0
+[node name="Countdown" parent="." instance=ExtResource( 3 )]
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+margin_top = -5.0
 margin_right = 266.0
-margin_bottom = 342.0
+margin_bottom = 5.0
+
+[node name="KEYBOARD" type="HBoxContainer" parent="."]
+margin_left = 379.0
+margin_top = 392.0
+margin_right = 645.0
+margin_bottom = 392.0
 
 [node name="WinDisplay" type="Control" parent="."]
 visible = false
@@ -234,5 +244,6 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
+[connection signal="timer_timeout" from="Countdown" to="." method="_on_Countdown_timer_timeout"]
 [connection signal="timeout" from="WinTimer" to="." method="_on_WinTimer_timeout"]
 [connection signal="timeout" from="DefeatTimer" to="." method="_on_DefeatTimer_timeout"]

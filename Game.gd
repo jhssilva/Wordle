@@ -22,7 +22,7 @@ $Container/Options/FifthRow,
 $Container/Options/SixthRow]
 onready var win_display_scene = $WinDisplay
 onready var defeat_display_scene = $DefeatDisplay
-
+onready var countdown_scene = $Countdown
 signal won_game
 signal lost_game
 
@@ -31,6 +31,7 @@ func _ready():
 	rng.randomize()
 	win_display_scene.hide()
 	defeat_display_scene.hide()
+	countdown_scene.hide()
 
 func set_current_game_mode(mode):
 	current_game_mode = mode
@@ -93,6 +94,28 @@ func handle_game_modes():
 		else:
 			text = "A palavra comeca com a letra: " + current_word[0]
 		update_info_message(text)
+	elif (current_game_mode == game_mode[2]):
+		handle_game_mode_hard()
+	elif (current_game_mode == game_mode[3]):
+		handle_game_mode_clock()
+	elif (current_game_mode == game_mode[4]):
+		handle_game_mode_timed()
+	
+func handle_game_mode_hard():
+	countdown_scene.show()
+	countdown_scene.minutes = 0
+	countdown_scene.seconds = 15
+	countdown_scene.start_timer()
+		
+func handle_game_mode_clock():
+	countdown_scene.show()
+	countdown_scene.minutes = 0
+	countdown_scene.seconds = 30
+	countdown_scene.start_timer()
+	
+func handle_game_mode_timed():
+	countdown_scene.show()
+	countdown_scene.start_timer()
 		
 func update_info_message(message):
 	info_label.text = message
@@ -224,3 +247,12 @@ func _on_DefeatTimer_timeout():
 func _on_WinTimer_timeout():
 	win_display_scene.hide()
 	emit_signal("won_game")
+
+func _on_Countdown_timer_timeout():
+	if (current_game_mode == game_mode[3] || current_game_mode == game_mode[2]):
+		countdown_scene.hide()
+		countdown_scene.stop_timer()
+		current_row_option = row_path.size()
+		handle_end_game()
+	elif (current_game_mode == game_mode[4]):
+		pass

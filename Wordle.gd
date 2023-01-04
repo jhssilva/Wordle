@@ -86,3 +86,12 @@ func handle_mode_selected(mode_name):
 	modes_control_scene.hide()
 	game_scene.set_current_game_mode(mode_name)
 	game_start()
+
+func _on_Modes_hard_mode():
+	handle_mode_selected("hard")
+
+func _on_Modes_timed_mode():
+	handle_mode_selected("timed")
+	
+func _on_Modes_against_clock_mode():
+	handle_mode_selected("clock")
