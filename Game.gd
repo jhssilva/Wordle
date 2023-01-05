@@ -52,11 +52,23 @@ func clear_game_variables():
 	game_on = false
 	dictionnaire_keys_clicked = {}
 	clear_all_letters()
+	countdown_scene.stop_timer()
+	countdown_scene.hide()
+	update_win_defeat_message_based_on_language()
 
 func clear_all_letters():
 	for i in range(row_path.size()):
 		for x in range(word_size):
 			get_path_letter_pos_row(i, x+1).clear()
+
+func update_win_defeat_message_based_on_language():
+	var text_win = "You won! :) \nYou can check your score on the Menu!"
+	var text_defeat = "You've lost! :( \nYou can check your score in the Menu!"
+	if current_language == "pt":
+		text_win = "Ganhaste! :) \nPodes verificar o teu score no Menu!"
+		text_defeat = "Perdeste! :( \nPodes verificar o teu score no Menu!"
+	win_display_scene.get_node("Label").text = text_win
+	defeat_display_scene.get_node("Label").text = text_defeat
 
 func set_new_word():
 	current_word = get_word()
