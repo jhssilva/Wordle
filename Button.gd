@@ -41,6 +41,8 @@ func set_status_green():
 	change_status(1)
 
 func set_status_yellow():
+	if (theme == array_status[1]):
+		return
 	change_status(2)
 	
 func change_label(label):
