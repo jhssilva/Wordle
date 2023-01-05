@@ -1,0 +1,198 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Keyboard.gd" type="Script" id=1]
+[ext_resource path="res://Button.tscn" type="PackedScene" id=2]
+
+[node name="Keyboard" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Rows" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 251.0
+margin_bottom = 68.0
+alignment = 1
+
+[node name="First" type="HBoxContainer" parent="Rows"]
+margin_top = 9.0
+margin_right = 251.0
+margin_bottom = 23.0
+
+[node name="Q" parent="Rows/First" instance=ExtResource( 2 )]
+margin_right = 11.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="W" parent="Rows/First" instance=ExtResource( 2 )]
+margin_left = 15.0
+margin_right = 26.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="E" parent="Rows/First" instance=ExtResource( 2 )]
+margin_left = 30.0
+margin_right = 41.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="R" parent="Rows/First" instance=ExtResource( 2 )]
+margin_left = 45.0
+margin_right = 56.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="T" parent="Rows/First" instance=ExtResource( 2 )]
+margin_left = 60.0
+margin_right = 71.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="Y" parent="Rows/First" instance=ExtResource( 2 )]
+margin_left = 75.0
+margin_right = 86.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="U" parent="Rows/First" instance=ExtResource( 2 )]
+margin_left = 90.0
+margin_right = 101.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="I" parent="Rows/First" instance=ExtResource( 2 )]
+margin_left = 105.0
+margin_right = 116.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="O" parent="Rows/First" instance=ExtResource( 2 )]
+margin_left = 120.0
+margin_right = 131.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="P" parent="Rows/First" instance=ExtResource( 2 )]
+margin_left = 135.0
+margin_right = 146.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="Second" type="HBoxContainer" parent="Rows"]
+margin_top = 27.0
+margin_right = 251.0
+margin_bottom = 41.0
+
+[node name="A" parent="Rows/Second" instance=ExtResource( 2 )]
+margin_right = 11.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="S" parent="Rows/Second" instance=ExtResource( 2 )]
+margin_left = 15.0
+margin_right = 26.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="D" parent="Rows/Second" instance=ExtResource( 2 )]
+margin_left = 30.0
+margin_right = 41.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="F" parent="Rows/Second" instance=ExtResource( 2 )]
+margin_left = 45.0
+margin_right = 56.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="G" parent="Rows/Second" instance=ExtResource( 2 )]
+margin_left = 60.0
+margin_right = 71.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="H" parent="Rows/Second" instance=ExtResource( 2 )]
+margin_left = 75.0
+margin_right = 86.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="J" parent="Rows/Second" instance=ExtResource( 2 )]
+margin_left = 90.0
+margin_right = 101.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="K" parent="Rows/Second" instance=ExtResource( 2 )]
+margin_left = 105.0
+margin_right = 116.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="L" parent="Rows/Second" instance=ExtResource( 2 )]
+margin_left = 120.0
+margin_right = 131.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="DEL" parent="Rows/Second" instance=ExtResource( 2 )]
+margin_left = 135.0
+margin_right = 146.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="Third" type="HBoxContainer" parent="Rows"]
+margin_top = 45.0
+margin_right = 251.0
+margin_bottom = 59.0
+rect_pivot_offset = Vector2( -224, -141 )
+
+[node name="Z" parent="Rows/Third" instance=ExtResource( 2 )]
+margin_right = 11.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="X" parent="Rows/Third" instance=ExtResource( 2 )]
+margin_left = 15.0
+margin_right = 26.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="C" parent="Rows/Third" instance=ExtResource( 2 )]
+margin_left = 30.0
+margin_right = 41.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="V" parent="Rows/Third" instance=ExtResource( 2 )]
+margin_left = 45.0
+margin_right = 56.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="B" parent="Rows/Third" instance=ExtResource( 2 )]
+margin_left = 60.0
+margin_right = 71.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="N" parent="Rows/Third" instance=ExtResource( 2 )]
+margin_left = 75.0
+margin_right = 86.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="M" parent="Rows/Third" instance=ExtResource( 2 )]
+margin_left = 90.0
+margin_right = 101.0
+margin_bottom = 14.0
+text = "Q"
+
+[node name="ENTER" parent="Rows/Third" instance=ExtResource( 2 )]
+margin_left = 105.0
+margin_right = 116.0
+margin_bottom = 14.0
+text = "Q"
