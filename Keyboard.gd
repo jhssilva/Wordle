@@ -31,7 +31,6 @@ onready var key_n = $Rows/Third/N
 onready var key_m = $Rows/Third/M
 onready var key_enter = $Rows/Third/ENTER
 
-
 onready var dict_buttons = {
 	"Q": key_q,
 	"W": key_w,
@@ -63,6 +62,8 @@ onready var dict_buttons = {
 	"ENTER": key_enter,
 }
 
+signal button_clicked(label)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_all_buttons_default()
@@ -70,14 +71,16 @@ func _ready():
 func set_all_buttons_default():
 	for label in dict_buttons:
 		var button = dict_buttons[label]
-		set_button_default(button, label)
+		set_button_default_with_button(button, label)
 		button.connect("clicked", self, "_handle_button_click")
 		
-func set_button_default(button,label):
+func set_button_default_with_button(button,label):
 	button.set_initial(label)
 
 func change_key(label, status):
 	var key_label = label.to_upper()
+	if !dict_buttons.has(key_label):
+		return
 	var button = dict_buttons[key_label]
 	
 	if status == "green":
@@ -90,4 +93,21 @@ func change_key(label, status):
 		button.set_status_default()
 	
 func _handle_button_click(label):
-	print("here" + label)
+	emit_signal("button_clicked", label)
+
+func set_button_green(label):
+	change_key(label, "green")
+	
+func set_button_gray(label):
+	change_key(label, "gray")
+
+func set_button_yellow(label):
+	change_key(label, "yellow")
+
+func set_button_default(label):
+	change_key(label, "default")
+
+func set_all_buttons_default_without_setting_signal_again():
+	for label in dict_buttons:
+		var button = dict_buttons[label]
+		set_button_default_with_button(button, label)

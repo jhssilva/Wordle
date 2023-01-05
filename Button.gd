@@ -32,7 +32,7 @@ func set_initial(label):
 	change_label(label)
 	
 func set_status_default():
-	change_status(0)
+	clear_status()
 
 func set_status_gray():
 	key.disabled = true

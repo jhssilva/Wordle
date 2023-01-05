@@ -251,5 +251,6 @@ wait_time = 2.0
 one_shot = true
 
 [connection signal="timer_timeout" from="Countdown" to="." method="_on_Countdown_timer_timeout"]
+[connection signal="button_clicked" from="Keyboard" to="." method="_on_Keyboard_button_clicked"]
 [connection signal="timeout" from="WinTimer" to="." method="_on_WinTimer_timeout"]
 [connection signal="timeout" from="DefeatTimer" to="." method="_on_DefeatTimer_timeout"]

@@ -23,6 +23,7 @@ $Container/Options/SixthRow]
 onready var win_display_scene = $WinDisplay
 onready var defeat_display_scene = $DefeatDisplay
 onready var countdown_scene = $Countdown
+onready var keyboard_scene = $Keyboard
 signal won_game
 signal lost_game
 
@@ -55,6 +56,7 @@ func clear_game_variables():
 	countdown_scene.stop_timer()
 	countdown_scene.hide()
 	update_win_defeat_message_based_on_language()
+	keyboard_set_default()
 
 func clear_all_letters():
 	for i in range(row_path.size()):
@@ -177,16 +179,19 @@ func update_information_on_row():
 	for i in range(current_word.length()):
 		if (current_word.to_lower()[i] == word_input.to_lower()[i]):
 			update_letter_green(i+1)
+			keyboard_set_letter_green(current_word[i])
 		else:
 			var aux_character = word_input.to_lower()[i]
 			var found = false
 			for x in range(current_word.length()):
 				if (i != x && aux_character == current_word[x]):
 					update_letter_yellow(i+1)
+					keyboard_set_letter_yellow(aux_character)
 					found = true
 					break
 			if(!found):
 				update_letter_gray(i+1)
+				keyboard_set_letter_gray(aux_character)
 				add_letter_to_dictionaire(aux_character)
 
 func update_letter_green(position):
@@ -291,3 +296,30 @@ func _on_Countdown_timer_timeout():
 			countdown_scene.hide()
 			current_row_option = row_path.size()
 			handle_end_game()
+
+func _on_Keyboard_button_clicked(label):
+	if (label == "ENTER"):
+		if(word_input.length() >= current_word.length()):
+			game_iteraction()
+	elif (label == "DEL"):
+		handle_backspace_pressed()
+	else:
+		if (word_input.length() >= word_size):
+			return
+		word_input += label
+		update_ui_letter(label)
+
+func keyboard_set_letter_green(label):
+	keyboard_scene.set_button_green(label)
+	
+func keyboard_set_letter_gray(label):
+	keyboard_scene.set_button_gray(label)
+
+func keyboard_set_letter_yellow(label):
+	keyboard_scene.set_button_yellow(label)
+
+func keyboard_set_letter_default(label):
+	keyboard_scene.set_button_default(label)
+
+func keyboard_set_default():
+	keyboard_scene.set_all_buttons_default_without_setting_signal_again()
