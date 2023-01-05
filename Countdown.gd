@@ -51,8 +51,8 @@ func _physics_process(delta):
 		dsec_scene.text = "0" + str(dsec)
 	
 	if (seconds <= 0 && dsec <= 0):
-		emit_signal("timer_timeout")
 		stop_timer()
+		emit_signal("timer_timeout")
 		return
 	
 func _on_Timer_timeout():

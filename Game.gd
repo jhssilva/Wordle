@@ -115,6 +115,8 @@ func handle_game_mode_clock():
 	
 func handle_game_mode_timed():
 	countdown_scene.show()
+	countdown_scene.minutes = 0
+	countdown_scene.seconds = 6
 	countdown_scene.start_timer()
 		
 func update_info_message(message):
@@ -207,6 +209,13 @@ func set_new_turn():
 		handle_end_game()
 		return
 	
+	if (current_game_mode == game_mode[4]):
+		countdown_scene.stop_timer()
+		countdown_scene.minutes = 0
+		countdown_scene.seconds = 6
+		countdown_scene.dsec = 0
+		countdown_scene.start_timer()
+	
 	current_row_option += 1
 	word_input = ""
 	
@@ -249,10 +258,24 @@ func _on_WinTimer_timeout():
 	emit_signal("won_game")
 
 func _on_Countdown_timer_timeout():
+	if(!game_on):
+		countdown_scene.hide()
+		return
+	
 	if (current_game_mode == game_mode[3] || current_game_mode == game_mode[2]):
 		countdown_scene.hide()
 		countdown_scene.stop_timer()
 		current_row_option = row_path.size()
 		handle_end_game()
 	elif (current_game_mode == game_mode[4]):
-		pass
+		if current_row_option < row_path.size():
+			word_input = ""
+			current_row_option += 1
+			countdown_scene.minutes = 0
+			countdown_scene.seconds = 6
+			countdown_scene.dsec = 0
+			countdown_scene.start_timer()
+		else:
+			countdown_scene.hide()
+			current_row_option = row_path.size()
+			handle_end_game()
